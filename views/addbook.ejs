@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title><%=title%></title>
+     <link rel="stylesheet" href="../css/main.css"> 
+</head>
+    <body>    
+        <div class="container"  style="width: 35%;position: relative;left: 435px;top: 100px;">
+            <span><a href="/" style="color:black;outline:none;text-decoration:none;">Back</a></span>
+            <h1 style="position: relative;text-align: center;">Add New Book</h1>
+            <form name="form1" method="POST" action="/newbook/add">
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Title</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="title" name="title" placeholder="Enter Book title">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="lname">Book Author</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="author" name="author" placeholder="Enter Book Author">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="country">Book category</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="category" id="category" value="" placeholder="Enter Book Category">
+                </div>
+              </div>              
+              <div class="row">
+                <input type="submit" value="Submit" name="submit">
+              </div>
+            </form>
+          </div>               
+    </body>
+</body>
+</html>

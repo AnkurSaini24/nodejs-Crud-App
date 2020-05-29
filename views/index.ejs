@@ -1,0 +1,50 @@
+<h1>welcome to Book Crud Application!</h1>
+
+<h1>
+    <%=title%>
+  </h1> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {  
+      background-color: #dddddd;
+    }
+    </style>       
+
+  <% if(messages.success){%>
+    <div class="alert alert-success" role="alert" style="width:30%;">
+      <%= messages.success %>
+    </div>
+    <%}%> 
+  <table style="width:30%">
+    <tr>
+      <th>S.no</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Category</th> 
+      <th>Action</th>  
+    </tr> 
+    <% let count=0; for(var i=0;i<Books.length;i++){ count++; %>
+    <tr>     
+      <td><%= count %></td>
+      <td><%= Books[i].title %></td>
+      <td><%= Books[i].author %></td>
+      <td><%= Books[i].category %></td>      
+      <td><a href="/book/edit/<%= Books[i]._id %>"><img src="images/edit.png" style="width:18px;"></a>&nbsp;&nbsp;
+        <a href="/book/delete/<%= Books[i]._id %>" onclick="return confirm('Are you sure you want to delete this item?');"><img src="images/delete.jpg" style="width:18px;"></a></td>
+    </tr>
+    <% } %>
+  </table>
+
+  <a href="/newbook" class="btn">Add New Book</a>
