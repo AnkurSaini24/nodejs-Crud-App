@@ -7,7 +7,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var flash = require('express-flash');
 var Book = require('./Book.model');
-var Port = 3000;
+var Port = process.env.PORT || 3000;
 
 
 app.set('views', path.join(__dirname, 'views'));
