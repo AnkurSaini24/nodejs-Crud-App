@@ -1,43 +1,56 @@
-<h1>welcome to Book Crud Application!</h1>
-
-<h1>
-    <%=title%>
-  </h1> 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
+<html>
+<title> <%=title%></title>
+<head>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="../css/main.css"> 
+<script>
+  $(document).ready(function() {    
+    var table=$('#bookDetails').DataTable({ "pageLength": 10, "lengthChange": false });
+    $('#bookDetails tbody')
+        .on( 'mouseenter', 'td', function () {
+            var colIdx = table.cell(this).index().column; 
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+            $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+        } );
+} );
+</script>
+</head>    
+ <body>
+   <div class="container">
+    <h1 class="titletext">Node Js Book Crud Application!</h1>
+    <div class="addbook col-75"><a href="/newbook" class="btn btn-primary">Add New Book</a></div>
     
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    
-    tr:nth-child(even) {  
-      background-color: #dddddd;
-    }
-    </style>       
-
-  <% if(messages.success){%>
-    <div class="alert alert-success" role="alert" style="width:30%;">
-      <%= messages.success %>
-    </div>
-    <%}%> 
-  <table style="width:30%">
-    <tr>
-      <th>S.no</th>
+    <% if(messages.success){%>
+      <div class="alert alert-success col-75" role="alert">
+        <%= messages.success %>
+      </div>
+    <%}%>
+     
+  <table id="bookDetails" class="display">
+    <thead>
+      <th>S.No</th>
+      <th>Book Thumbnail</th>
       <th>Title</th>
       <th>Author</th>
       <th>Category</th> 
       <th>Action</th>  
-    </tr> 
+    </thead> 
+    <tbody>
     <% let count=0; for(var i=0;i<Books.length;i++){ count++; %>
     <tr>     
       <td><%= count %></td>
+      <td><% if(Books[i].image){ %>
+        <img src="<%= Books[i].image %>" class="imageclass">
+         <%}else {%>
+          N.A
+          <%}%>
+      </td>
       <td><%= Books[i].title %></td>
       <td><%= Books[i].author %></td>
       <td><%= Books[i].category %></td>      
@@ -45,6 +58,8 @@
         <a href="/book/delete/<%= Books[i]._id %>" onclick="return confirm('Are you sure you want to delete this item?');"><img src="images/delete.jpg" style="width:18px;"></a></td>
     </tr>
     <% } %>
-  </table>
-
-  <a href="/newbook" class="btn">Add New Book</a>
+  </tbody>
+  </table>   
+</div>
+</body>
+</html>

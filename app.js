@@ -51,7 +51,7 @@ app.get('/newbook',function(req,res){
     
 // save data into the database
 app.post('/newbook/add',function(req,res){       
-    Book.insertMany([{'title':req.body.title,'author':req.body.author,'category':req.body.category}],function(err,result){      
+    Book.insertMany([{'title':req.body.title,'author':req.body.author,'image':req.body.bookurl,'category':req.body.category}],function(err,result){      
        console.log("Inserted 1 documents into the collection");            
        req.flash('success', 'Record Added SuccessFully!');
        res.redirect('/');    
@@ -67,7 +67,7 @@ app.get('/book/edit/:id',function(req,res){
 
 //updating the record in the database
 app.post('/book/update',function(req,res){   
-    Book.updateOne({'_id':req.body.id},{$set: {'title':req.body.title,'author':req.body.author,'category':req.body.category}},function(err,result){
+    Book.updateOne({'_id':req.body.id},{$set: {'title':req.body.title,'author':req.body.author,'image':req.body.bookurl,'category':req.body.category}},function(err,result){
      req.flash('success', 'Record Updated SuccessFully!');           
      res.redirect('/');
     });
