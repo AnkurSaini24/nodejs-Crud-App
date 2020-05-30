@@ -27,7 +27,7 @@ app.use(flash());
 
 
 //connect to the databases
-mongoose.connect('mongodb://localhost:27017/crud',{useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect('mongodb://heroku_wx4ph96r:d20cmq78ldc1g9ck1vhl1rhlaq@ds151202.mlab.com:51202/heroku_wx4ph96r',{useNewUrlParser: true,useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () =>  {
