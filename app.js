@@ -40,7 +40,7 @@ app.get('/',function(req,res){
     Book.find({})
   .exec(function(err,books){
       //console.log(books);        
-     res.render('index',{title: 'Hey','Books':books});     
+     res.render('index',{title: 'Node js App','Books':books});     
 });
 });
 
